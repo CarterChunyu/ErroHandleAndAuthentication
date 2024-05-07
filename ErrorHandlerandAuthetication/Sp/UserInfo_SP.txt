@@ -1,0 +1,15 @@
+﻿CREATE OR ALTER PROC UserInfo_SP
+@UserID INT 
+AS
+BEGIN
+	WITH C1 AS(
+SELECT U.Account,U.UserName,G.GroupName,CONCAT(M.MainFuncionName,'-',M.DetailFunctionName) FunctionName 
+FROM Users U INNER JOIN Groups G ON U.GroupId = G.GroupId AND U.UserId = @USERID 
+LEFT JOIN MenuCodes M ON M.GroupId = G.GroupId
+)
+,C2 AS (
+SELECT Account,UserName,GroupName,STUFF((SELECT CONCAT(',',FunctionName) FROM C1 WHERE Account = M.Account FOR XML PATH('')),1,1,'') AllFunctionNames
+FROM C1 M GROUP BY Account,UserName,GroupName
+)
+SELECT Account,UserName,GroupName,AllFunctionNames FROM C2
+END

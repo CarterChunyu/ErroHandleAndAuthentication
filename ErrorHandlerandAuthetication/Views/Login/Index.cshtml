@@ -1,0 +1,27 @@
+﻿<form action="Login" method="post">
+  <div class="imgcontainer">
+   @* <img src="img_avatar2.png" alt="Avatar" class="avatar">*@
+  </div>
+
+  <div class="container">
+    <label for="Username"><b>Username</b></label>
+    <input type="text" value="tnfe01" name="Username" required>
+
+    <label for="Password"><b>Password</b></label>
+    <input type="password" value="@@a0123456789" name="Password" required>
+
+    <button type="submit">Login</button>
+  </div>
+
+</form>
+
+
+@section Scripts{
+    <script>
+        let errmsg = '@ViewBag.ErrorMsg';
+        window.onload = function(){
+            if(errmsg != '')
+                alert(errmsg);
+        }
+    </script>
+}

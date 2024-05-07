@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerandAuthetication", "ErrorHandlerandAuthetication\ErrorHandlerandAuthetication.csproj", "{BCD97EA5-E610-4740-B16B-1C808209730D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCD97EA5-E610-4740-B16B-1C808209730D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD97EA5-E610-4740-B16B-1C808209730D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD97EA5-E610-4740-B16B-1C808209730D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD97EA5-E610-4740-B16B-1C808209730D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0E27121-F588-4CC3-84A1-4E62C8052D1D}
+	EndGlobalSection
+EndGlobal
