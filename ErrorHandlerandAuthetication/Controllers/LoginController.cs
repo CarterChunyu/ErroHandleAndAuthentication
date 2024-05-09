@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using ErrorHandlerandAuthetication.DBContexts;
+using ErrorHandlerandAuthetication.Helper;
 using ErrorHandlerandAuthetication.Models;
 using ErrorHandlerandAuthetication.ProjModels;
 using Microsoft.AspNetCore.Mvc;
@@ -38,8 +39,10 @@ namespace ErrorHandlerandAuthetication.Controllers
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("UserID", user.UserId);
                 userInfo = await conn.QueryFirstOrDefaultAsync<UserInfo>("TestDb1.dbo.UserInfo_SP", parameters, commandType: CommandType.StoredProcedure);
-            } 
-                return View();
+            }
+            HttpContext.SetObjectTOSession<UserInfo>("userInfo", userInfo);
+
+            return View();
         }
     }
 }

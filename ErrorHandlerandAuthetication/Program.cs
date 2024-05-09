@@ -1,5 +1,7 @@
+using ErrorHandlerandAuthetication.Access;
 using ErrorHandlerandAuthetication.DBContexts;
 using ErrorHandlerandAuthetication.Middlewares;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NLog;
@@ -26,6 +28,21 @@ try
         ob.UseSqlServer(builder.Configuration.GetConnectionString("MyConnStr"));
     });
 
+    // session
+    builder.Services.AddSession();
+    builder.Services.AddDistributedMemoryCache();
+
+    // policy
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("MenuPolicy", policy =>
+        {
+            policy.Requirements.Add(new MenuAccess());
+        });
+    });
+
+    builder.Services.AddSingleton<IAuthorizationHandler, MenuAccessHandler>();
+
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
@@ -46,7 +63,10 @@ try
 
     app.UseRouting();
 
+    app.UseSession();
+
     app.UseAuthorization();
+
 
     app.UseMiddleware<GlobalExceptionHandleMiddleware>();
 
