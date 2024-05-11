@@ -7,7 +7,7 @@
 namespace ErrorHandlerandAuthetication.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,7 +72,10 @@ namespace ErrorHandlerandAuthetication.Migrations
                     { 1, "Index1", "T001", "Test" },
                     { 2, "Index1", "T002", "Test" },
                     { 3, "Index2", "T001", "Test" },
-                    { 4, "Index1", "T001", "TestApi" }
+                    { 4, "Index1", "T001", "TestApi" },
+                    { 5, "Index1", "T001", "Test2" },
+                    { 6, "Index2", "T001", "Test2" },
+                    { 7, "Index1", "T001", "Test2" }
                 });
 
             migrationBuilder.InsertData(

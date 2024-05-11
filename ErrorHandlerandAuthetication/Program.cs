@@ -25,11 +25,20 @@ try
     // DBContext
     builder.Services.AddDbContext<ProjectContext>(ob =>
     {
-        ob.UseSqlServer(builder.Configuration.GetConnectionString("MyConnStr"));
+        ob.UseSqlServer(builder.Configuration.GetConnectionString("Laptop"));
     });
 
+    // AutoMapper
+    builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
     // session
-    builder.Services.AddSession();
+    builder.Services.AddSession(s =>
+    {
+        // 預設20分鐘
+        s.IdleTimeout = TimeSpan.FromMinutes(15);
+        // 預設1分鐘
+        s.IOTimeout = TimeSpan.FromMinutes(1);
+    });
     builder.Services.AddDistributedMemoryCache();
 
     // policy
@@ -37,11 +46,13 @@ try
     {
         options.AddPolicy("MenuPolicy", policy =>
         {
+            
             policy.Requirements.Add(new MenuAccess());
         });
     });
 
     builder.Services.AddSingleton<IAuthorizationHandler, MenuAccessHandler>();
+    builder.Services.AddSingleton<IAuthorizationMiddlewareResultHandler, MenuAccessMiddleware>();
 
     var app = builder.Build();
 

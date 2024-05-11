@@ -1,4 +1,8 @@
-﻿<form action="Login" method="post">
+﻿@{
+    Layout = "_LogLayout";
+}
+
+<form action="/Login/Index" method="post">
   <div class="imgcontainer">
    @* <img src="img_avatar2.png" alt="Avatar" class="avatar">*@
   </div>
@@ -15,13 +19,12 @@
 
 </form>
 
-
 @section Scripts{
     <script>
-        let errmsg = '@ViewBag.ErrorMsg';
+        let authMessage = '@ViewBag.authMessage';
         window.onload = function(){
-            if(errmsg != '')
-                alert(errmsg);
+            if (authMessage != '')
+                alert(authMessage);
         }
     </script>
 }

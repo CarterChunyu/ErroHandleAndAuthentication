@@ -70,7 +70,30 @@ namespace ErrorHandlerandAuthetication.DBContexts
                     MainFuncionName = "TestApi",
                     DetailFunctionName = "Index1",
                     GroupId = "T001"
-                });
+                },
+                new MenuCode
+                {
+                    FunctionSeq = 5,
+                    MainFuncionName = "Test2",
+                    DetailFunctionName = "Index1",
+                    GroupId = "T001"
+                },
+                new MenuCode
+                {
+                    FunctionSeq = 6,
+                    MainFuncionName = "Test2",
+                    DetailFunctionName = "Index2",
+                    GroupId = "T001"
+                },
+                new MenuCode
+                {
+                    FunctionSeq = 7,
+                    MainFuncionName = "Test2",
+                    DetailFunctionName = "Index1",
+                    GroupId = "T002"
+                }
+                );
+
         }
 
         public DbSet<User> Users { get; set; }

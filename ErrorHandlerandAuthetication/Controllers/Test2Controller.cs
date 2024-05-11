@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ErrorHandlerandAuthetication.Controllers
 {
     [Authorize(Policy = "MenuPolicy")]
-    public class TestController : Controller
+    public class Test2Controller : Controller
     {
-        
         public IActionResult Index1()
         {
             return View();

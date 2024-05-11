@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ErrorHandlerandAuthetication.Controllers
 {
     [Authorize(Policy = "MenuPolicy")]
-    public class TestController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TestApi : ControllerBase
     {
-        
+        [HttpGet("Index1")]
         public IActionResult Index1()
         {
-            return View();
-        }
-
-        public IActionResult Index2()
-        {
-            return View();
+            return Ok("Index1");
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Newtonsoft.Json;
 using System.Net;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
@@ -26,13 +28,15 @@ namespace ErrorHandlerandAuthetication.Middlewares
                 Regex regex = new Regex(@"/api/", RegexOptions.IgnoreCase);
                 if (!regex.IsMatch(context.Request.Path.Value))
                 {
-                    context.Response.Redirect("/Error/Error");
+                    //string json = JsonConvert.SerializeObject(Tuple.Create(ex.Message));
+                    string json = JsonConvert.SerializeObject(ex.Message);
+                    context.Response.Redirect($"/Error/Error?errMessage={json}");
                 }
                 else
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = "application/json";
-                    string json = JsonConvert.SerializeObject(new { message = ex.Message });
+                    string json = JsonConvert.SerializeObject(new { result = "Error",message = ex.Message });
                     await context.Response.WriteAsJsonAsync(json);
                 }
             }

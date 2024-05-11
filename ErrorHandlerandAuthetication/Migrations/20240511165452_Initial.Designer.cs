@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ErrorHandlerandAuthetication.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20240507134849_init")]
-    partial class init
+    [Migration("20240511165452_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,6 +98,27 @@ namespace ErrorHandlerandAuthetication.Migrations
                             DetailFunctionName = "Index1",
                             GroupId = "T001",
                             MainFuncionName = "TestApi"
+                        },
+                        new
+                        {
+                            FunctionSeq = 5,
+                            DetailFunctionName = "Index1",
+                            GroupId = "T001",
+                            MainFuncionName = "Test2"
+                        },
+                        new
+                        {
+                            FunctionSeq = 6,
+                            DetailFunctionName = "Index2",
+                            GroupId = "T001",
+                            MainFuncionName = "Test2"
+                        },
+                        new
+                        {
+                            FunctionSeq = 7,
+                            DetailFunctionName = "Index1",
+                            GroupId = "T001",
+                            MainFuncionName = "Test2"
                         });
                 });
 
