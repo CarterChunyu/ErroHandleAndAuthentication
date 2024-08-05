@@ -1,23 +1,43 @@
 ﻿
-<button id="">BTN</button>
+H1<input id="H1" />
+T1<input id="T1" />
+N1<input id="N1" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<button onclick="DownloadWord()">下載Word</button>
 
 <script>
-    function Download(){
+   function DownloadWord(){
+        let rowData = {};
 
-    }
+        rowData["H1"] = document.getElementById('H1').value;
+        rowData["T1"] = document.getElementById('T1').value;
+        rowData["N1"] = document.getElementById('N1').value;
+        rowData["FileName"] = "測試";
+
+        let formData = new FormData();
+        formData.append("rowData", JSON.stringify(rowData));
+
+        // 呼叫 GenerateWordDocument 動作
+        fetch("/Download/GenerateWordDocumnet", {
+            method: "Post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(rowData),
+        })
+            .then(response => response.json())
+            .then(data => {
+                let fileName = data.fileName;
+                let link = document.createElement("a");
+                link.href = `/Download/DownloadFile?fileName=${fileName}`;
+                link.download = fileName;
+                // 將鏈接添加到document並點擊
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link)
+            })
+            .catch(error => {
+                console.error(error);
+            })
+   }
 </script>
